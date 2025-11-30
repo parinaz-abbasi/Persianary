@@ -494,7 +494,9 @@ io.on('connection', (socket) => {
     }
 });
 
-const PORT = 3000;
-http.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+// Allow overriding host/port via env (handy if 3000/0.0.0.0 are blocked)
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
+http.listen(PORT, HOST, () => {
+    console.log(`Server running on http://${HOST}:${PORT}`);
 });
